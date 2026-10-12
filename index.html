@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DICOM Viewer</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header class="toolbar">
+      <button type="button" id="open-folder" class="text-button">Open folder</button>
+      <button type="button" id="open-library" class="text-button" hidden>Library</button>
+      <input id="folder-input" type="file" webkitdirectory multiple hidden />
+      <span class="divider"></span>
+      <div class="tool-group" role="group" aria-label="Mouse tool">
+        <button type="button" class="text-button" data-tool="window" aria-pressed="true" title="Window and level">Window</button>
+        <button type="button" class="text-button" data-tool="zoom" aria-pressed="false" title="Zoom">Zoom</button>
+        <button type="button" class="text-button" data-tool="pan" aria-pressed="false" title="Pan">Pan</button>
+      </div>
+      <span class="divider"></span>
+      <div class="tool-group" id="presets" role="group" aria-label="Window presets"></div>
+      <button type="button" id="series-window" class="text-button" title="Window stored in the DICOM file">Series</button>
+      <button type="button" id="invert" class="text-button" aria-pressed="false" title="Invert grayscale">Invert</button>
+      <button type="button" id="reset" class="text-button">Reset</button>
+      <span class="spacer"></span>
+      <div class="source-toggle" role="group" aria-label="Image source">
+        <button type="button" id="mode-dicom" aria-pressed="true">DICOM</button>
+        <button type="button" id="mode-jpeg" aria-pressed="false">JPEG</button>
+      </div>
+      <button type="button" id="cine" class="text-button" aria-pressed="false">Play</button>
+    </header>
+    <div class="workspace">
+      <aside id="sidebar">
+        <div id="study-list"></div>
+        <p class="privacy">Images stay on this computer.</p>
+      </aside>
+      <div class="viewer-column">
+        <div id="stage" tabindex="0">
+          <div id="dicom-viewport"></div>
+          <canvas id="jpeg-viewport"></canvas>
+          <div id="hud" class="hud" hidden>
+            <div>
+              <div id="hud-study"></div>
+              <div id="hud-series"></div>
+            </div>
+            <div class="hud-bottom">
+              <div id="hud-window"></div>
+              <div id="hud-slice"></div>
+            </div>
+          </div>
+          <div id="overlay" class="overlay">
+            <div class="overlay-card">
+              <p id="overlay-title">Open a study</p>
+              <p id="overlay-detail">Drop a folder of DICOM or JPEG images, or choose one.</p>
+              <button type="button" id="overlay-open" class="text-button">Open folder</button>
+            </div>
+          </div>
+        </div>
+        <footer class="statusbar">
+          <input id="slice" type="range" min="0" max="0" value="0" disabled />
+          <span id="slice-label">0 / 0</span>
+          <label class="fps">Speed <input id="fps" type="range" min="4" max="30" value="12" /></label>
+          <span class="hint">Wheel scrolls · left drag uses the selected tool · right drag zooms · space plays</span>
+        </footer>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "dicom-viewer",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@cornerstonejs/core": "^5.11.7",
+    "@cornerstonejs/dicom-image-loader": "^5.11.7",
+    "@cornerstonejs/tools": "^5.11.7",
+    "dicom-parser": "^1.8.21"
+  },
+  "devDependencies": {
+    "@originjs/vite-plugin-commonjs": "^1.0.3",
+    "@types/node": "^22.15.21",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vite-plugin-node-polyfills": "^0.28.0",
+    "vitest": "^3.1.4"
+  }
+}
